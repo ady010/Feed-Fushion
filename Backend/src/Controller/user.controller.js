@@ -1,3 +1,3 @@
 module.exports.register = ()=>{
-    console.log("create account")
+    const {name, email, password } = req.body()
 }
