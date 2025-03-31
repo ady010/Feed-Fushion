@@ -27,7 +27,10 @@ userSchema.methods.generateToken = function(){
     )
 }
 
-userSchema.statics.verif
+userSchema.statics.verifyToken = function(token){
+    return jwt.verify(token, process.env.JWT_SECRET)
+}
+
 
 const userModel = mongoose.model("user", userSchema)
 
