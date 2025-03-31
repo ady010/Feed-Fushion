@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const jwt = require("jsonwebtoken")
+const bcrypt = require("bcrypt")
 
 const userSchema = new mongoose.Schema({
     name:{
@@ -31,6 +32,13 @@ userSchema.statics.verifyToken = function(token){
     return jwt.verify(token, process.env.JWT_SECRET)
 }
 
+userSchema.statics.hashPassword = function(password){
+    return bcrypt.hash(password,10)
+}
+
+userSchema.statics.comparePassword = function(password, hash){
+    return bcrypt.compare(password, hash)
+}
 
 const userModel = mongoose.model("user", userSchema)
 
