@@ -1,8 +1,10 @@
-const jwt = require("jsonwebtoken")
+import { body } from "express-validator"
 const userModel = require("../Models/user.model")
+const jwt = require("jsonwebtoken")
+
 
 module.exports.registerUserValidation = [
-    body('name')
+    body("name")
     .isString(),
     body('email')
     .isEmail()

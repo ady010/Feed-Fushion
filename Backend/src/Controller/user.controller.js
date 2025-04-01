@@ -11,4 +11,6 @@ module.exports.register = (req, res)=>{
     if(!password){
         res.status(400).json({message:"Invalid User"})
     }  
+
+    res.redirect("/Feed")
 }
