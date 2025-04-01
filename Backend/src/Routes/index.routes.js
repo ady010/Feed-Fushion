@@ -7,6 +7,10 @@ Router.post("/register",
     Middleware.registerUserValidation,
     userController.register)
 
-    
+Router.post("/login",
+    Middleware.loginUserValidation,
+    userController.login)
+
+
 
 module.exports = Router
