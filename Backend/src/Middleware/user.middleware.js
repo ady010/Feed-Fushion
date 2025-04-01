@@ -1,6 +1,6 @@
-import { body } from "express-validator"
-const userModel = require("../Models/user.model")
 const jwt = require("jsonwebtoken")
+const userModel = require("../Models/user.model")
+const {body} = require("express-validator")
 
 
 module.exports.registerUserValidation = [

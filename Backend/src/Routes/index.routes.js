@@ -7,4 +7,6 @@ Router.post("/register",
     Middleware.registerUserValidation,
     userController.register)
 
+    
+
 module.exports = Router
