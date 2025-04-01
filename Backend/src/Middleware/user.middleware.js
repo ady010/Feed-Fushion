@@ -1,8 +1,31 @@
 const jwt = require("jsonwebtoken")
 const userModel = require("../Models/user.model")
 
+module.exports.registerUserValidation = [
+    body('name')
+    .isString(),
+    body('email')
+    .isEmail()
+    .withMessage('Email must be a valid email'),
+    body('password')
+    .isString()
+    .withMessage('Password must be a String')
+    .isLength({min: 6})
+    .withMessage('Password must be atleast 6 characters')
+]
 
-module.exprts.authUser = async (req, res, next)=>{
+module.exports.loginUserValidation = [
+    body('email')
+    .isEmail()
+    .withMessage('Email must be a valid email'),
+    body('password')
+    .isString()
+    .withMessage('Password must be a String')
+    .isLength({min: 6})
+    .withMessage('Password must be atleast 6 characters')
+]
+
+module.exports.authUser = async (req, res, next)=>{
     try {
         const token = req.headers.authorization.split(" ")[1]
         if(!token){
