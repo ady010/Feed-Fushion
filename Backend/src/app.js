@@ -10,4 +10,4 @@ app.use(cors({origin:"http://localhost:5173"},{Credantial:true}))
 
 app.use("/",Routes)
 
-module.exports = app
+module.exports = app;
