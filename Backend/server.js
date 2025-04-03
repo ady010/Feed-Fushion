@@ -1,5 +1,6 @@
 const app = require("./src/app")
 require("dotenv").config()
+
 const database = require("./src/Database/database")
 database()
 

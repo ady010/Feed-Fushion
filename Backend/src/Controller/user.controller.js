@@ -27,23 +27,24 @@ module.exports.createUserController = async (req, res) => {
 }
 
 module.exports.loginUserController = async (req, res) => {
+    const errors = validationResult(req)
+
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array() })
+    }
+
     try {
         const { email, password } = req.body
+        const user = await userService.loginUserController({email, password})
 
-        const user = await userModel.findOne({ email })
-        if (!user) {
-            return res.status(400).json({ message: "Invalid user" })
-        }
-        const isMatch = await userModel.comparePassword(password, user.password)
-        if(!isMatch){
-            res.status(400).json({message: "Invalis user"})
-        }
+        const token = user.generateToken()
 
-        const token = userModel.generateToken()
 
-        res.status(200).json({message:user, token})
+        res.status(200).json({user, token})
     }
     catch (err) {
-        res.status(400).json({message: "Error",err})
+        console.log(err);
+        
+        res.status(400).json({message:err.message})
     }
 }
