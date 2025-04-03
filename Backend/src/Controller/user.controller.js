@@ -1,6 +1,7 @@
 const userModel = require("../Models/user.model")
 const { validationResult } = require("express-validator")
 const middleware = require("../Middleware/user.middleware")
+const userService = require("../services/user.service")
 
 
 module.exports.register = async (req, res) => {
@@ -11,24 +12,6 @@ module.exports.register = async (req, res) => {
 
     try {
         const { name, email, password } = req.body
-
-        const isUserExits = await userModel.findOne({
-            $or: [{ name: name}, {email: email}]
-        })
-
-        if(isUserExits){
-            return res.status(400).json({message:"User Already Exits"})
-        }
-
-        const hashed = await userModel.hashpassword
-
-        const user = userModel.create(
-            {
-                name,
-                email,
-                password:hashed
-            }
-        )
 
         const token = userModel.generateToken()
         res.status(200).json({message: token, user })
@@ -56,6 +39,6 @@ module.exports.login = async (req, res) => {
         res.status(200).json({message: token, user})
     }
     catch (err) {
-
+        res.status(400).json({message: "Error",err})
     }
 }
