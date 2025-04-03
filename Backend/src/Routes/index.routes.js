@@ -5,11 +5,11 @@ const Middleware = require("../Middleware/user.middleware")
 
 Router.post("/register", 
     Middleware.registerUserValidation,
-    userController.register)
+    userController.createUserController)
 
 Router.post("/login",
     Middleware.loginUserValidation,
-    userController.login)
+    userController.loginUserController)
 
 
 

@@ -1,24 +1,27 @@
 const userModel = require("../Models/user.model")
 
-const createUser = async ({name, email, password})=>{
+module.exports.createUser = async ({ name, email, password }) => {
 
-    if(!username || !email || !password){
-        return res.status(400).json({message:"All fields are required"})
+    if (!name || !email || !password) {
+        throw new Error("All fields are required");
+        
     }
 
     const isUserExits = await userModel.findOne({
-        $or: [{name}, {email}]
+        $or: [{ name }, { email }]
     })
 
-    if(isUserExits){
-        return res.status(400).json({message:"User Already Exits"})
+    if (isUserExits) {
+         throw new Error("Users already exits");
+         
     }
 
     const hashed = await userModel.hashPassword
 
-    const user = new userModel({name, email, password: hashed})
+    const user =  await userModel.create({ name, email, password: hashed })
 
-    await user.save()
+    
+    delete user._doc.password
     return user
 
 }

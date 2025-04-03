@@ -16,7 +16,6 @@ const userSchema = new mongoose.Schema({
         type:String
     }
 })
-
 userSchema.methods.generateToken = function(){
     return jwt.sign(
         {
@@ -28,15 +27,15 @@ userSchema.methods.generateToken = function(){
     )
 }
 
-userSchema.statics.verifyToken = function(token){
+module.exports = userSchema.statics.verifyToken = function(token){
     return jwt.verify(token, process.env.JWT_SECRET)
 }
 
-userSchema.statics.hashPassword = function(password){
+module.exports =userSchema.statics.hashPassword = function(password){
     return bcrypt.hash(password,10)
 }
 
-userSchema.statics.comparePassword = function(password, hash){
+module.exports =userSchema.statics.comparePassword = function(password, hash){
     return bcrypt.compare(password, hash)
 }
 
