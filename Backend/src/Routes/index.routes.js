@@ -11,6 +11,5 @@ Router.post("/login",
     Middleware.loginUserValidation,
     userController.loginUserController)
 
-
-
+    
 module.exports = Router

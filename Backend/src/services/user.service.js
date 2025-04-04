@@ -39,7 +39,6 @@ module.exports.loginUserController = async ({email, password}) =>{
         }
 
         delete user._doc.password
-
         return user
         
 }

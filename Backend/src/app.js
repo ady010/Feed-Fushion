@@ -8,6 +8,6 @@ app.use(express.urlencoded({extended:true}))
 
 app.use(cors({origin:"http://localhost:5173"},{Credantial:true}))
 
-app.use("/",Routes)
+app.use("/users",Routes)
 
 module.exports = app;
