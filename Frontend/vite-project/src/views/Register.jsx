@@ -9,7 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   
-  const navigate = useNavigate
+  const navigate = useNavigate()
 
   const submitHandler = async (e)=>{
     e.preventDefault()
@@ -24,7 +24,7 @@ const Register = () => {
       })
       
       localStorage.setItem('token', res.data.token)
-      navigate("/feed")
+      navigate("/")
     }
     catch(err){
       console.error(err)
