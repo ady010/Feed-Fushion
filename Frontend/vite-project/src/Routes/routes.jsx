@@ -1,8 +1,8 @@
 import React from 'react'
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import Register from '../Components/Register'
-import Login from '../Components/Login'
-import Feed from '../Components/Feed'
+import Register from '../views/Register'
+import Login from '../views/Login'
+import Feed from '../views/Feed'
 
 const routes = () => {
   return (
