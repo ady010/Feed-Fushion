@@ -22,7 +22,6 @@ const Register = () => {
         email,
         password
       })
-      
       localStorage.setItem('token', res.data.token)
       navigate("/")
     }

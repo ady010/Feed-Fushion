@@ -1,6 +1,35 @@
+import axios from 'axios'
 import React from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const navigate = useNavigate()
+
+  const submitHandler = (e)=>{
+    e.preventDefault()
+
+    axios.post("http://localhost:3000/login",{
+      email,
+      password
+    })
+    .then(res=>{
+      const data =res.data
+      localStorage.setItem("token", data.token)
+      navigate("/")
+    })
+    .catch(err=>{
+      if(err.response.data?.message){
+        setError(err.response.message)
+      }
+    })
+   
+  }
+
     return (
         // Full-screen centered container with a background image
         <div className="flex items-center justify-center min-h-screen bg-cover bg-center text-black" style={{ backgroundImage: "url(https://images.pexels.com/photos/3944425/pexels-photo-3944425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)" }}>
@@ -10,19 +39,19 @@ const Login = () => {
             <h2 className="text-3xl font-semibold text-center text-black mb-6">Feed Fusion</h2>
             {/* Subheading */}
             <h3 className="text-xl  text-center mb-4">Login to Your Account</h3>
-            <form>
+            <form onSubmit={submitHandler} >
               {/* Email Input */}
               <div className="mb-4">
                
-                <input type="email" className="w-full p-2 rounded-md bg-white/20 border border-white/30 focus:outline-none focus:ring-1 focus:ring-white/50 placeholder-white/80 text-white" placeholder="Enter your email" />
+                <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" className="w-full p-2 rounded-md bg-white/20 border border-white/30 focus:outline-none focus:ring-1 focus:ring-white/50 placeholder-white/80 text-white" placeholder="Enter your email" />
               </div>
               {/* Password Input */}
               <div className="mb-4">
                 
-                <input type="password" className="w-full p-2 rounded-md bg-white/20 border border-white/30 focus:outline-none focus:ring-1 focus:ring-white/50 placeholder-white/80 text-white" placeholder="Enter password" />
+                <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" className="w-full p-2 rounded-md bg-white/20 border border-white/30 focus:outline-none focus:ring-1 focus:ring-white/50 placeholder-white/80 text-white" placeholder="Enter password" />
               </div>
               {/* Login Button */}
-              <button className="w-full bg-black/70 hover:bg-black/90 text-white font-bold py-2 px-4 rounded-md transition">Login</button>
+              <button type='submit' className="w-full bg-black/70 hover:bg-black/90 text-white font-bold py-2 px-4 rounded-md transition">Login</button>
             </form>
             {/* Register Link */}
             <p className="text-sm text-center mt-4 text-white">
