@@ -1,6 +1,18 @@
 import React from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Feed = () => {
+
+  const navigate = useNavigate()
+
+  const regClick = ()=>{
+    navigate("/register")
+  }
+
+  const logClick = ()=>{
+    navigate("/login")
+  }
+
   return (
     <main>
       {/* Header Section */}
@@ -11,11 +23,12 @@ const Feed = () => {
           className="px-2 py-1 border rounded"
         />
         <h1 className="text-4xl font-bold p-2 bg ">Feed Fusion</h1>
-        <div className="flex gap-2">
-          <button type="button" className="px-3 py-1 hover:bg-black hover:text-white border rounded">
+        <div className="buttons flex gap-2">
+           
+          <button onClick={regClick} type="button" className="px-3 py-1 hover:bg-black hover:text-white border rounded">
             Register
           </button>
-          <button type="button" className="px-3 py-1 hover:bg-black hover:text-white border rounded">
+          <button onClick={logClick} type="button" className="px-3 py-1 hover:bg-black hover:text-white border rounded">
             Login
           </button>
         </div>
@@ -29,6 +42,7 @@ const Feed = () => {
           </a>
         ))}
       </nav>
+
     </main>
   );
 };

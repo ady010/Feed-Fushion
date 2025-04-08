@@ -13,7 +13,8 @@ const Login = () => {
   const submitHandler = (e)=>{
     e.preventDefault()
 
-    axios.post("http://localhost:3000/login",{
+    
+    axios.post("http://localhost:3000/users/login",{
       email,
       password
     })
@@ -31,6 +32,7 @@ const Login = () => {
   }
 
     return (
+
         // Full-screen centered container with a background image
         <div className="flex items-center justify-center min-h-screen bg-cover bg-center text-black" style={{ backgroundImage: "url(https://images.pexels.com/photos/3944425/pexels-photo-3944425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)" }}>
           {/* Glassmorphic form container */}
@@ -40,6 +42,7 @@ const Login = () => {
             {/* Subheading */}
             <h3 className="text-xl  text-center mb-4">Login to Your Account</h3>
             <form onSubmit={submitHandler} >
+              {error && <div>{error}</div>}
               {/* Email Input */}
               <div className="mb-4">
                

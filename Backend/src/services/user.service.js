@@ -28,7 +28,7 @@ module.exports.createUser = async ({ name, email, password }) => {
 module.exports.loginUserController = async ({email, password}) =>{
     console.log(email, password)
     const user = await userModel.findOne({ email })
-        console.log(user)
+        // console.log(user)
         if (!user) {
            throw new Error("Invalid User");
            
