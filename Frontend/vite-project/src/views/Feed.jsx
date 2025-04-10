@@ -1,48 +1,90 @@
-import React from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Input } from "../Components/ui/input";
+import { Button } from "../Components/ui/button";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuList,
+} from "../Components/ui/navigation-menu";
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+} from "../Components/ui/sheet";
+import { Menu } from "lucide-react";
 
 const Feed = () => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const regClick = ()=>{
-    navigate("/register")
-  }
-
-  const logClick = ()=>{
-    navigate("/login")
-  }
+  const navLinks = [
+    { to: "/", label: "Home" },
+    { to: "/blog", label: "Blog" },
+    { to: "/business", label: "Business" },
+    { to: "/sports", label: "Sports" },
+    { to: "/tech", label: "Tech" },
+    { to: "/science", label: "Science" },
+  ];
 
   return (
-    <main>
-      {/* Header Section */}
+    <main className="border-b">
+      {/* Header */}
       <header className="flex justify-between items-center p-4 border-b">
-        <input
-          type="search"
-          placeholder="Search"
-          className="px-2 py-1 border rounded"
-        />
-        <h1 className="text-4xl font-bold p-2 bg ">Feed Fusion</h1>
-        <div className="buttons flex gap-2">
-           
-          <button onClick={regClick} type="button" className="px-3 py-1 hover:bg-black hover:text-white border rounded">
+        <div className="flex items-center gap-4">
+          {/* Mobile menu trigger */}
+          <div className="md:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="w-6 h-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left">
+                <nav className="flex flex-col gap-4 mt-6">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.to}
+                      to={link.to}
+                      className="text-lg font-medium"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
+
+          {/* Search + Branding */}
+          <Input type="search" placeholder="Search" className="hidden md:block w-60" />
+          <h1 className="text-2xl font-bold">Feed Fusion</h1>
+        </div>
+
+        {/* Auth Buttons */}
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => navigate("/register")}>
             Register
-          </button>
-          <button onClick={logClick} type="button" className="px-3 py-1 hover:bg-black hover:text-white border rounded">
+          </Button>
+          <Button variant="outline" onClick={() => navigate("/login")}>
             Login
-          </button>
+          </Button>
         </div>
       </header>
 
-      {/* Navigation Bar */}
-      <nav className="flex justify-between px-60 py-1 text-xl font-light border-b">
-        {['Home', 'Business', 'Sports', 'Tech', 'Science', 'IT'].map((label) => (
-          <a href="#" key={label} className="hover:underline">
-            {label}
-          </a>
-        ))}
+      {/* Desktop Nav Menu */}
+      <nav className="hidden md:flex justify-center border-b py-2">
+        <NavigationMenu>
+          <NavigationMenuList className="gap-6">
+            {navLinks.map((link) => (
+              <NavigationMenuItem key={link.to}>
+                <Link to={link.to} className="text-lg font-light hover:underline">
+                  {link.label}
+                </Link>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
       </nav>
-
     </main>
   );
 };
