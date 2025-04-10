@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import Register from '../views/Register'
 import Login from '../views/Login'
 import Feed from '../views/Feed'
+import Blog from '@/views/Blog'
 
 const routes = () => {
   return (
@@ -11,6 +12,7 @@ const routes = () => {
             <Route path='/register' element = {<Register/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/' element={<Feed/>}/>
+            <Route path='/blog' element={<Blog/>}/>
         </Routes>
     </Router>
   )
