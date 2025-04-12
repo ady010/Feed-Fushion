@@ -11,8 +11,7 @@ Router.post("/register",
 Router.post("/login",
     Middleware.loginUserValidation,
     userController.loginUserController)
-Router.post("/blog",
-    blogController.blog
-)
+
+
     
 module.exports = Router

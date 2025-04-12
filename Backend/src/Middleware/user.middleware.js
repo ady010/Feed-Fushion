@@ -34,7 +34,7 @@ module.exports.authUser = async (req, res, next)=>{
             res.status(400).json({message:'Unauthorized'})
         }
         const decoded = userModel.verifyToken(token)
-        const user = await userModel.findOne({_id: decoded.id})
+        const user = await userModel.findOne({_id: decoded.id}).lean()
 
         req.user = user
 
