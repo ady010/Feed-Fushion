@@ -2,13 +2,13 @@ const blogModel = require("../Models/blog.model")
 
 
 module.exports.blog = async ()=>{
-    const  {name, title, content} = req.body
+    const  {image, title, content} = req.body
     const userID = req.user._id 
 
     try{
     const blog = blogModel.create(
         {
-            name,
+            image,
             title,
             content,
             author: userID
