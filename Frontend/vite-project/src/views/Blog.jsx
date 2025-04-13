@@ -7,8 +7,9 @@ const navigate = useNavigate()
   const clickHandler = ()=>{
     navigate("/createBlog")
   }
-  return (
 
+  return (
+    
     <main>
       <header className='p-3'>
         <h1>Blogs</h1>
