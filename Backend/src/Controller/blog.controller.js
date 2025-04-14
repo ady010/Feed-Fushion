@@ -6,13 +6,13 @@ module.exports.blog = async (req, res)=>{
 
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-        return res.status(400).json({ message: "error" })
+        return res.status(400).json( errors )
     }
 
     try{
     const  {image, title, content} = req.body
     const userID = req.user._id 
-    const blog = blogModel.create(
+    const blog = await blogModel.create(
         {
             image,
             title,

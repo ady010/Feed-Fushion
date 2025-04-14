@@ -8,7 +8,7 @@ module.exports.blogValidation = [
     .notEmpty().withMessage("Image is required.")
     .trim(),
 
-  body("Title")
+  body("title")
     .isString().withMessage("Title must be a string.")
     .notEmpty().withMessage("Title is required.")
     .trim(),
