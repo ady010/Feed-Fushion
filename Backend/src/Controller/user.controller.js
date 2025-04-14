@@ -14,7 +14,7 @@ module.exports.createUserController = async (req, res) => {
     try {
         const { name, email, password } = req.body
 
-        const user = await userService.createUser({name, email, password})
+        const user = await userService.createUser(name, email, password)
 
         const token = user.generateToken()
         return res.status(201).json({user, token })

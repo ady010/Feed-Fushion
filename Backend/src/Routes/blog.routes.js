@@ -1,9 +1,12 @@
 const express = require("express")
 const Blogrouter = express.Router()
 const Middleware = require("../Middleware/user.middleware")
+const blogController = require("../Controller/blog.controller")
+const blogMiddleware = require("../Middleware/blog.middleware")
 
-Router.post("/blog",
+Blogrouter.post("/create",
     Middleware.authUser,
+    blogMiddleware.blogValidation,
     blogController.blog
 )
 
