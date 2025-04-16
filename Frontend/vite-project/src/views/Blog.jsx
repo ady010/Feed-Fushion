@@ -54,7 +54,7 @@ const Blog = () => {
                 {blog.title}
               </h2>
               <p className="text-gray-700 text-sm">{blog.content}</p>
-              <h3 className="text-sm text-gray-500 mb-2">by {blog.author}</h3>
+              <h3 className="text-sm text-gray-500 mb-2">by {blog.user}</h3>
             </div>
           </div>
         ))}
