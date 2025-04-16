@@ -1,14 +1,18 @@
 const express = require("express")
-const Blogrouter = express.Router()
+const blogRouter = express.Router()
 const Middleware = require("../Middleware/user.middleware")
 const blogController = require("../Controller/blog.controller")
 const blogMiddleware = require("../Middleware/blog.middleware")
 
-Blogrouter.post("/create",
+blogRouter.post("/create",
     Middleware.authUser,
     blogMiddleware.blogValidation,
     blogController.blog
 )
 
+blogRouter.get("/getBlogs",
+    blogController.getBlog
+)
 
-module.exports = Blogrouter
+
+module.exports = blogRouter

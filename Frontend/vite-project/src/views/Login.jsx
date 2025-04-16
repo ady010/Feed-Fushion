@@ -10,25 +10,23 @@ const Login = () => {
   const [error, setError] = useState("")
   const navigate = useNavigate()
 
-  const submitHandler = (e)=>{
+  const submitHandler = async (e)=>{
     e.preventDefault()
 
-    
-    axios.post("http://localhost:3000/users/login",{
-      email,
-      password
-    })
-    .then(res=>{
-      const data =res.data
-      localStorage.setItem("token", data.token)
+    try{
+      const res = await axios.post("http://localhost:3000/users/login",{
+        email,
+        password
+      })
+      localStorage.setItem("token", res.data.token)
       navigate("/")
-    })
-    .catch(err=>{
-      if(err.response.data?.message){
-        setError(err.response.message)
+    }
+    catch(err){
+      console.error(err)
+      if(err.response?.data?.message){
+        setError(err.response.data.message)
       }
-    })
-   
+    }
   }
 
     return (
