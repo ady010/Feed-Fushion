@@ -30,6 +30,7 @@ const Feed = () => {
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/blog", label: "Blog" },
+    { to: "/news", label: "News" },
     { to: "/business", label: "Business" },
     { to: "/sports", label: "Sports" },
     { to: "/tech", label: "Tech" },
