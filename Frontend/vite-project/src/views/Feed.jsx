@@ -110,6 +110,9 @@ const Feed = () => {
           </NavigationMenuList>
         </NavigationMenu>
       </nav>
+      <div className="feed">
+        
+      </div>
     </main>
   );
 };
