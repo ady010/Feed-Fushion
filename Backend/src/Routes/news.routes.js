@@ -2,6 +2,6 @@ const express = require("express")
 const newsRouter = express.Router()
 const newsController = require("../Controller/news.controller")
 
-newsRouter.post("/addnews", newsController.news)
+newsRouter.get("/api", newsController.news)
 
 module.exports = newsRouter

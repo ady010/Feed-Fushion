@@ -8,7 +8,7 @@ const Tech = () => {
     const fetchData = async () => {
       const apiKey = import.meta.env.VITE_NEWSORG_API_KEY;
       const url =
-        "https://newsapi.org/v2/everything?q=apple&from=2025-04-16&to=2025-04-16&sortBy=popularity&apiKey=c493382f783c405598156fa11829f9e6";
+        "https://newsapi.org/v2/everything?q=ai&from=2025-04-18&to=2025-04-18&sortBy=popularity&apiKey=c493382f783c405598156fa11829f9e6";
       try {
         const response = await fetch(url);
         const data = await response.json();

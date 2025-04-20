@@ -1,18 +1,14 @@
-const axios = require("axios")
-
-module.exports.news = async (req, res) => {
+module.exports.sports = async ()=>{
     try{
         const response = await axios.get("https://newsapi.org/v2/top-headlines?country=us&apiKey=c493382f783c405598156fa11829f9e6",{
-            
             params:{
                 apiKey : process.env.WORLD_NEWS_API_KEY
             }
         })
-        
         res.json(response.data.articles)
     }
-    catch(error){
+    catch{
         console.error('Error fetching details:',error.message)
-        res.status(500).json({error:'Failed to fetch news'})
+        res.status(500).json({error:'Failed to fetch data'})
     }
 }

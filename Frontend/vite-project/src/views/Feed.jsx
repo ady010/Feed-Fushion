@@ -36,6 +36,7 @@ const Feed = () => {
     { to: "/tech", label: "Tech" },
     { to: "/science", label: "Science" },
   ];
+  
 
   return (
     <main className="border-b">
