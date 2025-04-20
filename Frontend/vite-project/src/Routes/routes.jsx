@@ -8,6 +8,7 @@ import Createblog from '@/views/Createblog'
 import News from '@/views/News'
 import Science from '@/views/Science'
 import Tech from '@/views/Tech'
+import Sports from '@/views/Sports'
 
 const routes = () => {
   return (
@@ -21,6 +22,7 @@ const routes = () => {
             <Route path='/news' element={<News/>}/>
             <Route path='/science' element={<Science/>}/>
             <Route path='/tech' element={<Tech/>}/>
+            <Route path='/sports' element={<Sports/>}/>
         </Routes>
     </Router>
   )
