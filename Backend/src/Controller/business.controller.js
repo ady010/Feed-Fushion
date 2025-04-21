@@ -1,8 +1,8 @@
 const axios = require("axios")
 
-module.exports.sports = async (req, res)=>{
+module.exports.business = async (req, res)=>{
     try{
-        const response = await axios.get("https://newsapi.org/v2/top-headlines?country=us&category=sports&apiKey=c493382f783c405598156fa11829f9e6",{
+        const response = await axios.get("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=c493382f783c405598156fa11829f9e6",{
             params:{
                 apiKey : process.env.NEWSORG_API_KEY
             }

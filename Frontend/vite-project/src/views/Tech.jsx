@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
 
@@ -6,15 +7,11 @@ const Tech = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const apiKey = import.meta.env.VITE_NEWSORG_API_KEY;
-      const url =
-        "https://newsapi.org/v2/everything?q=ai&from=2025-04-18&to=2025-04-18&sortBy=popularity&apiKey=c493382f783c405598156fa11829f9e6";
       try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setArticles(data.articles);
+        const response = await axios.get("http://localhost:3000/all/tech");
+        setArticles(response.data);
       } catch (error) {
-        console.error("error fetching details", error);
+        console.log(error.response?.data?.error||error)
       }
     };
     fetchData();
@@ -23,7 +20,7 @@ const Tech = () => {
   return (
     <main className="max-w-5xl mx-auto px-4 py-8">
       <h2 className="text-3xl font-bold mb-6 text-center text-blue-800">
-        Tech
+        Top Tech Headlines
       </h2>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

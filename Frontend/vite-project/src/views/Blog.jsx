@@ -28,38 +28,42 @@ const Blog = () => {
   };
 
   return (
-    <main>
-      <header className="p-3">
-        <h1>Blogs</h1>
-        <button
-          onClick={clickHandler}
-          className="bg-black/70 hover:bg-black/90 text-white font-bold py-1 px-1 rounded-md transition"
+    <main className="w-full min-h-screen bg-gray-50">
+    <header className="flex flex-col sm:flex-row justify-between items-center p-4 bg-white shadow-sm">
+      <h1 className="text-2xl font-bold text-gray-800 mb-2 sm:mb-0">Blogs</h1>
+      <button
+        onClick={clickHandler}
+        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200"
+      >
+        Create Blog
+      </button>
+    </header>
+  
+    <section className="Blogs grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+      {data?.blogs?.map((blog, index) => (
+        <div
+          key={index}
+          className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition duration-300"
         >
-          Create Blogs
-        </button>
-      </header>
-      <div className="Blogs grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
-        {data?.blogs?.map((blog, index) => (
-          <div
-            key={index}
-            className="bg-white shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105"
-          >
-            <img
-              src={blog.image}
-              alt="Blog"
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-4">
-              <h2 className="text-lg font-semibold text-gray-800 mb-1">
-                {blog.title}
-              </h2>
-              <p className="text-gray-700 text-sm">{blog.content}</p>
-              <h3 className="text-sm text-gray-500 mb-2">by {blog.user}</h3>
-            </div>
+          <img
+            src={blog.image}
+            alt="Blog"
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-4 flex flex-col gap-2">
+            <h2 className="text-lg font-semibold text-gray-800">
+              {blog.title}
+            </h2>
+            <p className="text-gray-600 text-sm line-clamp-3">
+              {blog.content}
+            </p>
+            <span className="text-sm text-gray-500 italic">by {blog.user}</span>
           </div>
-        ))}
-      </div>
-    </main>
+        </div>
+      ))}
+    </section>
+  </main>
+  
   );
 };
 

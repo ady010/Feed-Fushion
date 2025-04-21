@@ -9,6 +9,7 @@ import News from '@/views/News'
 import Science from '@/views/Science'
 import Tech from '@/views/Tech'
 import Sports from '@/views/Sports'
+import Business from '@/views/Business'
 
 const routes = () => {
   return (
@@ -23,6 +24,8 @@ const routes = () => {
             <Route path='/science' element={<Science/>}/>
             <Route path='/tech' element={<Tech/>}/>
             <Route path='/sports' element={<Sports/>}/>
+            <Route path='/business' element={<Business/>}/>
+
         </Routes>
     </Router>
   )
