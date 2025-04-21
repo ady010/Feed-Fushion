@@ -163,7 +163,7 @@ const Feed = () => {
             placeholder="Search"
             className="hidden md:block w-60"
           />
-          <h1 className="text-2xl font-bold ">Feed Fusion</h1>
+          <h1 className="text-2xl font-bold "> Feed Fusion</h1>
         </div>
         <div className="flex gap-2">
           {isLoggedIn ? (
