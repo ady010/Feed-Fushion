@@ -31,8 +31,8 @@ const Business = () => {
           >
             {
               <img
-                src={article.urlToImage}
-                alt="News"
+                src={article.urlToImage ? article.urlToImage : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO3uq9im2G10h8UASAFfN1uX7JvZ4tLZ-JlQ&s"}
+                alt="Data"
                 className="w-full h-48 object-cover"
               />
             }

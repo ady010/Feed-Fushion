@@ -9,10 +9,10 @@ import {
   NavigationMenuList,
 } from "../Components/ui/navigation-menu";
 import { Sheet, SheetTrigger, SheetContent } from "../Components/ui/sheet";
+import DropdownMenu from "../Components/dropdown";
 import { Menu } from "lucide-react";
 
 const Feed = () => {
-  const [isLoggedIn, setIsloggedIn] = useState(false);
   const [news, setNews] = useState([]);
   const [tech, setTech] = useState([]);
   const [science, setScience] = useState([]);
@@ -30,15 +30,15 @@ const Feed = () => {
     { to: "/science", label: "Science" },
   ];
 
-  const loginHandle = () => {
-    setIsloggedIn(true);
-    navigate("/login");
-  };
+  // const loginHandle = () => {
+  //   setIsloggedIn(true);
+  //   navigate("/login");
+  // };
 
-  const logoutHandle = () => {
-    setIsloggedIn(false);
-    localStorage.removeItem("token");
-  };
+  // const logoutHandle = () => {
+  //   setIsloggedIn(false);
+  //   localStorage.removeItem("token");
+  // };
 
   // API Requests
   useEffect(() => {
@@ -54,6 +54,7 @@ const Feed = () => {
           ]);
         setNews(newsRes.data);
         setBusiness(businessRes.data);
+        console.log(businessRes.data)
         setSports(sportsRes.data);
         setTech(techRes.data);
         setScience(scienceRes.data);
@@ -76,7 +77,7 @@ const Feed = () => {
     <div className="bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition duration-300">
       {article.urlToImage && (
         <img
-          src={article.urlToImage}
+        src={article.urlToImage != null ? article.urlToImage : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO3uq9im2G10h8UASAFfN1uX7JvZ4tLZ-JlQ&s"}
           alt={article.title || "News"}
           className="w-full h-48 object-cover"
         />
@@ -132,10 +133,16 @@ const Feed = () => {
   );
 
   return (
+
+
+    
+    
+
     <main className="bg-gray-50 min-h-screen">
+      
       {/* Header */}
       <header className="flex justify-between items-center p-4 border-b bg-white">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-8">
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>
@@ -163,19 +170,12 @@ const Feed = () => {
             placeholder="Search"
             className="hidden md:block w-60"
           />
-          <h1 className="text-2xl font-bold "> Feed Fusion</h1>
+          <h1 className="text-3xl font-bold ">Feed Fusion</h1>
         </div>
-        <div className="flex gap-2">
-          {isLoggedIn ? (
-            <Button variant="outline" onClick={logoutHandle}>
-              Logout
-            </Button>
-          ) : (
-            <Button variant="outline" onClick={loginHandle}>
-              Login
-            </Button>
-          )}
-        </div>
+        <DropdownMenu>
+          
+        </DropdownMenu>
+        
       </header>
 
       {/* Navigation Menu */}
@@ -202,40 +202,50 @@ const Feed = () => {
         {news.length > 0 && <HeroFeature article={news[0]} />}
 
         {/* Sections */}
-        <Link to="/news" className="text-sm text-blue-600 hover:underline flex justify-end pt-10">
+        <Link
+          to="/news"
+          className="text-sm text-blue-600 hover:underline flex justify-end pt-10"
+        >
           See all →
         </Link>
         <SectionHeader title="Latest News" />
         <HorizontalScroll articles={news.slice(1, 6)} />
 
-        <Link to="/business" className="text-sm text-blue-600 hover:underline flex justify-end pt-10">
+        <Link
+          to="/business"
+          className="text-sm text-blue-600 hover:underline flex justify-end pt-10"
+        >
           See all →
         </Link>
-        <SectionHeader title="Top Business Headlines" />
+        <SectionHeader title="Business Headlines" />
         <HorizontalScroll articles={business.slice(0, 5)} />
 
-        <Link to="/sports" className="text-sm text-blue-600 hover:underline flex justify-end pt-10">
+        <Link
+          to="/sports"
+          className="text-sm text-blue-600 hover:underline flex justify-end pt-10"
+        >
           See all →
         </Link>
-        <SectionHeader title="Top Sports Headlines" />
+        <SectionHeader title="Sports Headlines" />
         <HorizontalScroll articles={sports.slice(0, 5)} />
 
-        <Link to="/tech" className="text-sm text-blue-600 hover:underline flex justify-end pt-10">
+        <Link
+          to="/tech"
+          className="text-sm text-blue-600 hover:underline flex justify-end pt-10"
+        >
           See all →
         </Link>
-        <SectionHeader title="Top Tech Headlines" />
+        <SectionHeader title="Tech Headlines" />
         <HorizontalScroll articles={tech.slice(0, 5)} />
 
-       
         <Link
           to="/science"
           className="text-sm text-blue-600 hover:underline flex justify-end pt-10"
         >
           See all →
         </Link>
-        <SectionHeader title="Top Science Headlines" />
+        <SectionHeader title="Science Headlines" />
         <HorizontalScroll articles={science.slice(0, 5)} />
-        
       </div>
     </main>
   );
